@@ -1,7 +1,7 @@
 from browser import document, alert
 
 NAZEV_APLIKACE = "Brzděnka+"
-VERZE = "verze 0.3 | 0.A.3 (\u03B1)"
+VERZE = "verze 0.3 | 0.A.3 (\u03B2)"
 AKTUALNI_ROK = "2020"
 AUTOR = f"\u00A9 {AKTUALNI_ROK}  Martin TÁBOR"
 UPOZORNENI = "!!! AUTOR NERUČÍ ZA SPRÁVNOST GENEROVANÝCH ÚDAJŮ !!!"
