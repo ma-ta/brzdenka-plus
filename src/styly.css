@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonty/Montserrat-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    src: url('fonty/RobotoSlab-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+::selection {
+    background-color: #0093ff;
+    color: white;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', serif;
+    line-height: 1.5;
+    font-size: 12pt;
+    min-width: 290px;
+}
+
+#img_logo {
+    width: 64px;
+    height: 64px;
+    float: left;
+    margin-right: 25px;
+    background-color: #333333;
+    padding: 6px;
+    border-radius: 8px;
+}
+
+header {
+    background-color: whitesmoke;
+    padding: 25px;
+}
+
+header h1 {
+    margin: 0;
+    font-family: 'Roboto Slab', sans-serif;
+
+}
+
+section {
+    padding: 25px;
+    text-align: center;
+
+}
+
+.tabulka_uprostred {
+    margin: 0 auto;
+    text-align: left;
+}
+.tabulka_uprostred label {
+    margin-right: 20px;
+}
+.tabulka_uprostred input {
+    text-align: center;
+    font-size: 12pt;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 206px;
+    font-family: 'Montserrat', serif;
+}
+
+input[type=text], input[type=number] {
+    width: 100%;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: whitesmoke;
+    border-left: transparent;
+}
+
+input[type=text]:focus, input[type=number]:focus {
+    outline: none;
+    border-bottom-color: lightgray;
+    transition: 0.3s;
+}
+
+#label_chybejici_procenta {
+    color: #0073d7;
+    font-weight: bold;
+}
+#input_chybejici_procenta {
+    color: #0073d7 /*#D70000*/;
+    font-weight: bold;
+    background-color: transparent;
+    border-color: transparent;
+    cursor: help;
+}
+
+button {
+    background-color: #0073d7;
+    border: none;
+    color: white;
+    font-size: 12pt;
+    font-family: 'Montserrat', serif;
+    display: inline-block;
+    text-decoration: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+button:hover {
+    opacity: 1;
+}
+button:disabled {
+    opacity: 0.7;
+}
+button:active {
+    opacity: 0.7;
+}
+button:focus {
+    outline-width: 0;
+}

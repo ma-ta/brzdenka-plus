@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Výpočet rychlosti vlaku při nedostatku brzdících procent">
+    <meta name="keywords" content="zob, zpráva o brzdění vlaku, brzdící procenta, brzděnka">
+    <meta name="author" content="Martin TÁBOR">
+
+    <!-- facivon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="obrazky/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="obrazky/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="obrazky/favicon/favicon-16x16.png">
+    <link rel="manifest" href="obrazky/favicon/site.webmanifest">
+    <link rel="mask-icon" href="obrazky/favicon/safari-pinned-tab.svg" color="#ffc40d">
+    <link rel="shortcut icon" href="obrazky/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-config" content="obrazky/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#333333">
+
+    <title></title>
+    <script type="text/javascript" src="brython/brython.js"></script>
+    <!--<script type="text/javascript" src="brython/brython_stdlib.js"></script>-->
+    <link rel="stylesheet" href="styly.css">
+</head>
+
+<body onload="brython(1)">
+
+    <script type="text/python" src="logika.py"></script>
+
+<header>
+    <img id="img_logo" alt="Logo Brzděnka+" src="obrazky/vystraha.svg" />
+    <h1 id="titulek"></h1>
+    <span id="podnadpis"></span>
+</header>
+<section>
+
+    <article>
+
+        <form id="kalkulacka">
+            <fieldset>
+                <legend>Existuje tabulka pro snížení stanovené rychlosti?</legend>
+                <label for="radio_tabulka_ano">Ano</label>
+                <input type="radio" id="radio_tabulka_ano" name="radio_tabulka_ano_ne" value="True">
+                <label for="radio_tabulka_ne">Ne</label>
+                <input type="radio" id="radio_tabulka_ne" name="radio_tabulka_ano_ne" value="False" checked>
+            </fieldset>
+            <div id="formular_vypocet">
+                <br>
+                <fieldset>
+                    <legend>Brzdící procenta dle ZOB</legend>
+                    <table class="tabulka_uprostred">
+                        <tr>
+                            <td><label for="input_potrebna_procenta" title="brzdící %">Potřebná:</label></td>
+                            <td><input onClick="this.select()" type="number" id="input_potrebna_procenta" min="0" placeholder="brzdící %" title="brzdících %"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input_skutecna_procenta" title="brzdící %">Skutečná:</label></td>
+                            <td><input onClick="this.select()" type="number" id="input_skutecna_procenta"  min="0" placeholder="brzdící %" title="brzdících %"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input_chybejici_procenta" id="label_chybejici_procenta" title="brzdící %">Chybí:</label></td>
+                            <td><input type="number" id="input_chybejici_procenta"  min="0" placeholder="0" value="0" title="brzdících %" tabindex="-1" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="input_max_rychlost" title="km/h">Max. rychlost:</label></td>
+                            <td><input onClick="this.select()" type="number" id="input_max_rychlost"  min="0" max="160" step="5" placeholder="km/h" title="km/h"></td>
+                        </tr>
+                    </table>
+                </fieldset>
+                <br>
+                <button type="button" id="button_vypocitat">Vypočítat</button>
+            </div>
+        </form>
+
+    </article>
+
+</section>
+
+<script>
+      if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                .then(function(registration) {
+            console.log('Service Worker Registered');
+          });
+
+        navigator.serviceWorker.ready.then(function(registration) {
+            console.log('Service Worker Ready');
+        });
+      }
+</script>
+
+</body>
+</html>
