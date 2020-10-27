@@ -125,6 +125,7 @@ button:active {
     color: #D70000;
     border-color: white;
     border-style: dotted;
+    padding: 10px 25px;
 }
 #button_reset:hover, #button_reset:focus {
     background-color: #d7000015;

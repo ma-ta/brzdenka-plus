@@ -1,4 +1,4 @@
-from browser import window, document, alert
+from browser import document, alert
 
 NAZEV_APLIKACE = "Brzděnka+"
 VERZE = "verze 0.3 | 0.B.3 (\u03B2)"
@@ -103,7 +103,7 @@ Brzděte však v dostatečné vzdálenosti před výstrahou!
                 print("((debug: 5 | toto else nemělo nastat = nějaká varianta je nedořešena))")  # debug
                 pass
     else:
-        zpracuj_vysledek("CHYBA:\nMusíte vyplnit všechny údaje !")
+        zpracuj_vysledek("CHYBA:  Musíte vyplnit všechny údaje!")
 
 
 def input_zmena(ev):
