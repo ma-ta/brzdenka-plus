@@ -1,10 +1,13 @@
-from browser import document, alert
+from browser import window, document, alert
 
 NAZEV_APLIKACE = "Brzděnka+"
-VERZE = "verze 0.3 | 0.A.3 (\u03B2)"
+VERZE = "verze 0.3 | 0.B.3 (\u03B2)"
 AKTUALNI_ROK = "2020"
 AUTOR = f"\u00A9 {AKTUALNI_ROK}  Martin TÁBOR"
 UPOZORNENI = "!!! AUTOR NERUČÍ ZA SPRÁVNOST GENEROVANÝCH ÚDAJŮ !!!"
+
+barva_normal = "#0073d7" #  modrá
+barva_pozor = "#D70000" #  červená
 
 tabulka_rychlosti = False
 potrebna_procenta = 0
@@ -15,6 +18,7 @@ max_rychlost = 0
 titulek = document["titulek"]
 podnadpis = document["podnadpis"]
 radio_tabulka_ano = document["radio_tabulka_ano"]
+radio_tabulka_ne = document["radio_tabulka_ne"]
 div_formular_vypocet = document["formular_vypocet"]
 input_potrebna = document["input_potrebna_procenta"]
 input_skutecna = document["input_skutecna_procenta"]
@@ -22,8 +26,9 @@ input_chybejici = document["input_chybejici_procenta"]
 label_chybejici = document["label_chybejici_procenta"]
 input_max_rychlost = document["input_max_rychlost"]
 button_vypocitat = document["button_vypocitat"]
+button_reset = document["button_reset"]
 
-def vypis_vysledek(vstup):
+def zpracuj_vysledek(vstup):
     alert(f"{vstup}\n\n{UPOZORNENI}\n\n{AUTOR}")
 
 
@@ -48,61 +53,61 @@ def vypocitat(ev):
             rych_120_a_vice = True
         
         if potrebna_p == skutecna_p:
-            vypis_vysledek("""Rychlost není třeba přepočítávat.
+            zpracuj_vysledek("""Rychlost není třeba přepočítávat.
 Brzděte již v dostatečné vzdálenosti před výstrahou!
 
 (Skutečná brzdící procenta jsou stejná jako potřebná.)""")
         
         elif 0 < (skutecna_p - potrebna_p) <= 10:
-            vypis_vysledek(f"""Rychlost není třeba přepočítávat.
+            zpracuj_vysledek(f"""Rychlost není třeba přepočítávat.
 Brzděte však v dostatečné vzdálenosti před výstrahou!
 
 (Máte jen {skutecna_p - potrebna_p} % navíc.)""")
 
         elif (skutecna_p - potrebna_p) > 10:
-            vypis_vysledek("Máte dostatek brzdících procent.")
+            zpracuj_vysledek("Máte dostatek brzdících procent.")
         
         else:
             # Výpočet
             if prc_mensi_45 is False and rych_120_a_vice is False:  # ani <= 45 % A ZÁROVEŇ ani >= 120 km/h
                 nova_rychlost = rychlost_vlaku - prc_chybejici
-                vypis_vysledek(zprava.format(nova_rychlost))
+                zpracuj_vysledek(zprava.format(nova_rychlost))
                 # print("((debug: 1))")  # debug
 
             elif prc_mensi_45 and rych_120_a_vice is False:
                 nova_rychlost = rychlost_vlaku - (2 * prc_chybejici)
-                vypis_vysledek(zprava.format(nova_rychlost) + "\n\n(Skutečná % jsou <= 45.)")
+                zpracuj_vysledek(zprava.format(nova_rychlost) + "\n\n(Skutečná % jsou <= 45.)")
                 # print("((debug: 2))")  # debug
 
             elif prc_mensi_45 is False and rych_120_a_vice:
                 nova_rychlost = rychlost_vlaku - prc_chybejici
                 if 120 < (nova_rychlost - 20):
-                    vypis_vysledek(zprava.format(nova_rychlost) + zprava2.format(nova_rychlost - 20))
+                    zpracuj_vysledek(zprava.format(nova_rychlost) + zprava2.format(nova_rychlost - 20))
                     # print("((debug: 3a))")  # debug
                 else:
                     nova_rychlost -= 20
-                    vypis_vysledek(zprava.format(nova_rychlost) + nelze_rozklad)
+                    zpracuj_vysledek(zprava.format(nova_rychlost) + nelze_rozklad)
                     # print("((debug: 3b))")  # debug
 
             elif prc_mensi_45 and rych_120_a_vice:
                 nova_rychlost = rychlost_vlaku - (2 * prc_chybejici)
                 if 120 < (nova_rychlost - 20):
-                    vypis_vysledek(zprava.format(nova_rychlost) + zprava2.format(nova_rychlost - 20) +
+                    zpracuj_vysledek(zprava.format(nova_rychlost) + zprava2.format(nova_rychlost - 20) +
                                 "\n\n(Skutečná % jsou <= 45.)")
                     # print("((debug: 4a))")  # debug
                 else:
                     nova_rychlost -= 20
-                    vypis_vysledek(zprava.format(nova_rychlost) + nelze_rozklad + "\n\n(Skutečná % jsou <= 45.)")
+                    zpracuj_vysledek(zprava.format(nova_rychlost) + nelze_rozklad + "\n\n(Skutečná % jsou <= 45.)")
                     # print("((debug: 4b))")  # debug
             else:
                 print("((debug: 5 | toto else nemělo nastat = nějaká varianta je nedořešena))")  # debug
                 pass
+    else:
+        zpracuj_vysledek("CHYBA:\nMusíte vyplnit všechny údaje !")
 
 
 def input_zmena(ev):
     # alert(ev.srcElement.id)  # debug
-    barva_normal = "#0073d7"
-    barva_pozor = "#D70000"
 
     if input_potrebna.value.isnumeric():
         global potrebna_procenta
@@ -128,15 +133,41 @@ def input_zmena(ev):
         max_rychlost = int(input_max_rychlost.value)
 
     if radio_tabulka_ano.checked:
-        div_formular_vypocet.style.visibility = "hidden"
-        vypis_vysledek("Při určení nové maximální rychlosti se řiďte touto tabulkou !")
+        div_formular_vypocet.style.display = "none"
+        zpracuj_vysledek("Při určení nové maximální rychlosti se řiďte touto tabulkou !")
     else:
-        div_formular_vypocet.style.visibility = "unset"
+        div_formular_vypocet.style.display = "unset"
+
+def reset(ev):
+    global tabulka_rychlosti
+    tabulka_rychlosti = False
+    radio_tabulka_ne.checked = True
+    
+    global potrebna_procenta
+    potrebna_procenta = 0
+    input_potrebna.value = ""
+
+    global skutecna_procenta
+    skutecna_procenta = 0
+    input_skutecna.value = ""
+
+    global chyby_procent
+    chyby_procent = 0
+    input_chybejici.value = "0"
+
+    global max_rychlost
+    max_rychlost = 0
+    input_max_rychlost.value = ""
+    
+    label_chybejici.style.color = barva_normal
+    input_chybejici.style.color = barva_normal
 
 
 document.title = NAZEV_APLIKACE
 titulek.textContent = NAZEV_APLIKACE
 podnadpis.textContent = VERZE
+
 button_vypocitat.bind("click", vypocitat)
+button_reset.bind("click", reset)
 for input in document.select("input"):
     input.bind("change", input_zmena)

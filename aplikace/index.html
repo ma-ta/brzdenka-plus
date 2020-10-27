@@ -9,16 +9,18 @@
     <meta name="keywords" content="zob, zpráva o brzdění vlaku, brzdící procenta, brzděnka">
     <meta name="author" content="Martin TÁBOR">
 
-    <!-- facivon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="obrazky/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="obrazky/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="obrazky/favicon/favicon-16x16.png">
-    <link rel="manifest" href="obrazky/favicon/site.webmanifest">
-    <link rel="mask-icon" href="obrazky/favicon/safari-pinned-tab.svg" color="#ffc40d">
-    <link rel="shortcut icon" href="obrazky/favicon/favicon.ico">
+    <link rel="manifest" href="manifest.webmanifest">
+    <!-- ikony, barvy -->
+    <link rel="apple-touch-icon" sizes="180x180" href="obrazky/ikony/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="obrazky/ikony/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="obrazky/ikony/favicon-16x16.png">
+    <link rel="mask-icon" href="obrazky/ikony/safari-pinned-tab.svg" color="#ffc40d">
+    <link rel="shortcut icon" href="obrazky/ikony/favicon.ico">
+    
     <meta name="msapplication-TileColor" content="#ffc40d">
-    <meta name="msapplication-config" content="obrazky/favicon/browserconfig.xml">
+    <meta name="msapplication-config" content="obrazky/ikony/browserconfig.xml">
     <meta name="theme-color" content="#333333">
+    <!-- /ikony, barvy -->
 
     <title></title>
     <script type="text/javascript" src="brython/brython.js"></script>
@@ -31,7 +33,7 @@
     <script type="text/python" src="logika.py"></script>
 
 <header>
-    <img id="img_logo" alt="Logo Brzděnka+" src="obrazky/vystraha.svg" />
+    <img id="img_logo" alt="Logo Brzděnka+" src="obrazky/ikony/logo.svg" />
     <h1 id="titulek"></h1>
     <span id="podnadpis"></span>
 </header>
@@ -54,14 +56,14 @@
                     <table class="tabulka_uprostred">
                         <tr>
                             <td><label for="input_potrebna_procenta" title="brzdící %">Potřebná:</label></td>
-                            <td><input onClick="this.select()" type="number" id="input_potrebna_procenta" min="0" placeholder="brzdící %" title="brzdících %"></td>
+                            <td><input onClick="this.select()" type="number" id="input_potrebna_procenta" min="0" placeholder="brzdící %" title="brzdící %"></td>
                         </tr>
                         <tr>
                             <td><label for="input_skutecna_procenta" title="brzdící %">Skutečná:</label></td>
-                            <td><input onClick="this.select()" type="number" id="input_skutecna_procenta"  min="0" placeholder="brzdící %" title="brzdících %"></td>
+                            <td><input onClick="this.select()" type="number" id="input_skutecna_procenta"  min="0" placeholder="brzdící %" title="brzdící %"></td>
                         </tr>
-                        <tr>
-                            <td><label for="input_chybejici_procenta" id="label_chybejici_procenta" title="brzdící %">Chybí:</label></td>
+                        <tr class="tr_chybejici_procenta">
+                            <td><label for="input_chybejici_procenta" id="label_chybejici_procenta" title="brzdících %">Chybí:</label></td>
                             <td><input type="number" id="input_chybejici_procenta"  min="0" placeholder="0" value="0" title="brzdících %" tabindex="-1" readonly></td>
                         </tr>
                         <tr>
@@ -72,6 +74,7 @@
                 </fieldset>
                 <br>
                 <button type="button" id="button_vypocitat">Vypočítat</button>
+                <button type="reset" id="button_reset">Smazat</button>
             </div>
         </form>
 
