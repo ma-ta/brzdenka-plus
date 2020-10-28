@@ -1,10 +1,13 @@
-from browser import document, alert
+from browser import window, document, alert
+from javascript import Date
+sw_alert = window.Swal.fire
 
 NAZEV_APLIKACE = "Brzděnka+"
 VERZE = "verze 0.3 | 0.B.3 (\u03B2)"
-AKTUALNI_ROK = "2020"
-AUTOR = f"\u00A9 {AKTUALNI_ROK}  Martin TÁBOR"
-UPOZORNENI = "!!! AUTOR NERUČÍ ZA SPRÁVNOST GENEROVANÝCH ÚDAJŮ !!!"
+AKTUALNI_ROK = Date.new().getFullYear()
+AUTOR = f"\u00A9 {AKTUALNI_ROK}&nbsp;&nbsp;Martin TÁBOR"
+UPOZORNENI = "!!! Všechny informace jsou bez záruky !!!".upper()
+OBRAZEK_ZOB = "./obrazky/zob-popka.jpg"
 
 barva_normal = "#0073d7" #  modrá
 barva_pozor = "#D70000" #  červená
@@ -28,9 +31,30 @@ input_max_rychlost = document["input_max_rychlost"]
 button_vypocitat = document["button_vypocitat"]
 button_reset = document["button_reset"]
 
-def zpracuj_vysledek(vstup):
-    alert(f"{vstup}\n\n{UPOZORNENI}\n\n{AUTOR}")
+def napoveda_vyplneni(ev):
+    sw_alert({
+        "title": "Jak na to ?",
+        "text": "Jednoduše opište vyznačené údaje ze ZOB do formuláře\u2026",
+        "icon": "question",
+        "confirmButtonText": "Heuréka !",
+        "confirmButtonColor": barva_normal,
+        "showCloseButton": True,
+        "imageUrl": OBRAZEK_ZOB,
+        "imageWidth": 600,
+        "imageHeight": 1200,
+        "imageAlt": "Zpráva o brzdění"
+    })
 
+def zpracuj_vysledek(vstup):
+    # alert(f"{vstup}\n\n{UPOZORNENI}\n\n{AUTOR}")
+    sw_alert({
+        "title": "Zpomal",
+        "html": f"{vstup}",
+        "icon": "warning",
+        "confirmButtonText": "Budiž",
+        "confirmButtonColor": barva_pozor,
+        "footer": f"<div style='text-align: center;'><span style='color: {barva_pozor}'>{UPOZORNENI}</span><br>{AUTOR}</div>"
+    })
 
 def vypocitat(ev):
     if potrebna_procenta > 0 and skutecna_procenta > 0 and max_rychlost > 0:
@@ -103,7 +127,7 @@ Brzděte však v dostatečné vzdálenosti před výstrahou!
                 print("((debug: 5 | toto else nemělo nastat = nějaká varianta je nedořešena))")  # debug
                 pass
     else:
-        zpracuj_vysledek("CHYBA:  Musíte vyplnit všechny údaje!")
+        napoveda_vyplneni(ev)
 
 
 def input_zmena(ev):
@@ -134,7 +158,12 @@ def input_zmena(ev):
 
     if radio_tabulka_ano.checked:
         div_formular_vypocet.style.display = "none"
-        zpracuj_vysledek("Při určení nové maximální rychlosti se řiďte touto tabulkou !")
+        sw_alert({
+            "icon": "info",
+            "title": "Existuje tabulka ?",
+            "text": "Při určení maximální rychlosti se řiďte danou tabulkou !",
+            "confirmButtonColor": barva_normal
+        })
     else:
         div_formular_vypocet.style.display = "unset"
 
