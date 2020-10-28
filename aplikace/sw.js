@@ -16,6 +16,7 @@ self.addEventListener('install', e => {
         '/knihovny/brython/brython.js',
         '/knihovny/brython/unicode.txt',
         '/obrazky/zob-popka.jpg',
+        '/obrazky/zob-popka.webp',
         '/obrazky/ikony/android-chrome-192x192.png',
         '/obrazky/ikony/android-chrome-512x512.png',
         '/obrazky/ikony/apple-touch-icon.png',
