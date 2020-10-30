@@ -1,5 +1,5 @@
 # externí knihovny, třídy atd.
-from browser import window, document, alert
+from browser import window, document, alert, console
 from javascript import Date
 sw_alert = window.Swal.fire
 
@@ -9,10 +9,11 @@ VERZE = "verze 0.3 | 0.B.3 (\u03B2)"
 AKTUALNI_ROK = Date.new().getFullYear()
 AUTOR = f"\u00A9 {AKTUALNI_ROK}&nbsp;&nbsp;Martin TÁBOR"
 UPOZORNENI = "!!! Všechny informace jsou bez záruky !!!".upper()
-OBRAZEK_ZOB = "./obrazky/zob-popka.webp"  # případně *.jpg
+OBRAZEK_ZOB = "./obrazky/zob-txtgrafika.png"
 
 BARVA_NORMAL = "#0073d7"  # modrá
 BARVA_POZOR = "#D70000"  # červená
+BARVA_OK = "#00D700"  # zelená
 
 # deklarace globálních proměnných
 tabulka_rychlosti = False
@@ -36,37 +37,126 @@ button_vypocitat = document["button_vypocitat"]
 button_reset = document["button_reset"]
 
 
+def zobraz_zpravu(zprava, footer=True):
+    if footer:
+        zprava["footer"] = f"<div style='text-align: center;'><span style='font-weight: bold;'>{UPOZORNENI}</span><br>{AUTOR}</div>"
+
+    sw_alert(zprava)
+
+
 def chybne_vyplneni(ev, title, text):
-    sw_alert({
-        "title": title,
-        "text": text,
-        "icon": "question",
-        "confirmButtonText": "Heuréka !",
-        "confirmButtonColor": BARVA_NORMAL,
-        "showCloseButton": True,
-        "imageUrl": OBRAZEK_ZOB,
-        "imageWidth": 600,
-        "imageHeight": 1200,
-        "imageAlt": "Zpráva o brzdění z POP"
-    })
+    zobraz_zpravu(
+        {
+            "title": "&mdash;\n" + title,
+            "text": text,
+            "icon": "question",
+            "confirmButtonText": "Heuréka",
+            "confirmButtonColor": BARVA_NORMAL,
+            "showCloseButton": True,
+            "imageUrl": OBRAZEK_ZOB,
+            "imageAlt": "Zpráva o brzdění z POP"
+        },
+        footer=False
+    )
 
-def zpracuj_vysledek(vstup):
-    # alert(f"{vstup}\n\n{UPOZORNENI}\n\n{AUTOR}")
 
-    zprava_max_rychlost = "Maximální rychlost vlaku je {} km/h!"
-    zprava_u_vystrahy = "\nV úrovni návěsti Výstraha však max. {} km/h!"
-    zprava_nelze_rozklad = "\nNELZE použít rozklad."
-    
-    sw_alert({
-        "title": "Zpomal",
-        "html": f"{vstup}",
+def zpracuj_vysledek(vysledek):
+
+    # přiřazení hodnot z argumentu fce
+    stav_prc = vysledek["stav_prc"]  # (+/-) x %
+    vmax_nova  = vysledek["vmax_nova"]
+    vmax_vystraha = vysledek["vmax_vystraha"]
+    rozklad = vysledek["rozklad"]  # False = nelze rozložit
+    prc_45_a_mensi = vysledek["prc_45_a_mensi"]
+
+
+    # seznam zpráv:
+    zpr_dostatek = {
+        "zpr": "Rychlost není třeba přepočítávat.",
+        "dostatek": "(Máte dostatek brzdících procent.)",
+        "navic_jen": f"(Máte ale pouze {stav_prc} % navíc!)",
+        "zadna_navic": "(Nemáte však žádná brzdící % navíc!)"
+    }
+    zpr_nedostatek = {
+        "zpr": f"Maximální rychlost vlaku je <strong>{vmax_nova} km/h</strong>!",
+        "u_vystrahy": f"V úrovni návěsti <strong>Výstraha</strong> však max. <strong>{vmax_vystraha} km/h</strong>!",
+        "rozklad_nelze": "(Nelze použít rozklad.)",
+        "nepojede": "Vlak nemůže odjet!<br><em>(Vypočítaná rychlost je 0 km/h \u2026)</em>",
+        "oznam": "Nezapomeňte informovat dispečera osobní dopravy!"
+    }
+    zpr_opatrne = "<em>Začněte brzdit v dostatečné vzdálenosti před Výstrahou!</em>"
+    zpr_prc_45_a_mensi = "(Skutečná brzdící % jsou 45 či méně.)"
+
+
+    swa_zpr_dostatek = {
+        "title": "Bez omezení\u2026",
+        "html": zpr_dostatek['zpr'],
+        "icon": "success",
+        "confirmButtonText": "OK",
+        "confirmButtonColor": BARVA_OK
+    }
+    swa_zpr_nedostatek = {
+        "title": "Zpomal!",
+        
+        "html": zpr_nedostatek['zpr'] +
+                "{uvystrahy_ci_rozklad}<br><br>" +
+                zpr_opatrne + "<br><br>" +
+                zpr_nedostatek['oznam'],
+        
         "icon": "warning",
         "confirmButtonText": "Budiž",
-        "confirmButtonColor": BARVA_POZOR,
-        "footer": f"<div style='text-align: center;'><span style='color: {BARVA_POZOR}'>{UPOZORNENI}</span><br>{AUTOR}</div>"
-    })
+        "confirmButtonColor": BARVA_POZOR
+    }
 
-def vypocitat(ev):
+
+    # VYHODNOCENÍ:
+
+    # a) Dostatek skutečných procent:
+    KONSTANTA_OBEZRETNOSTI = 10  # hodnotí, zda přebývá více než 10 %
+    zpr = swa_zpr_dostatek
+
+    if stav_prc > KONSTANTA_OBEZRETNOSTI:  # DOSTATEK
+        zpr["html"] += f"<br>{zpr_dostatek['dostatek']}"
+
+    elif 0 < stav_prc <= KONSTANTA_OBEZRETNOSTI:  # JEN x % NAVÍC
+        zpr["html"] += f"<br>{zpr_dostatek['navic_jen']}<br><br>{zpr_opatrne}"
+
+    elif stav_prc == 0:  # ŽÁDNÁ % NAVÍC
+        zpr["html"] += f"<br>{zpr_dostatek['zadna_navic']}<br><br>{zpr_opatrne}"
+
+    # b) Nedostatek skutečných procent:
+    elif vmax_nova <= 0:  # rychlost <= 0 km/h
+        zpr = {
+            "title": "Stůj!",
+            
+            "html": zpr_nedostatek["nepojede"],
+            
+            "icon": "error",
+            "confirmButtonText": "Bohužel",
+            "confirmButtonColor": BARVA_POZOR
+        }
+        
+    else:
+        zpr = swa_zpr_nedostatek
+        if rozklad is None:  # pro rychlost < 120 km/h
+            zpr["html"] = zpr["html"].format(
+                uvystrahy_ci_rozklad=""
+            )
+        
+        elif rozklad is True:  # u Výstrahy o 20 km/h méně
+            zpr["html"] = zpr["html"].format(
+                uvystrahy_ci_rozklad=f"<br>{zpr_nedostatek['u_vystrahy']}"
+            )
+        
+        elif rozklad is False:  # nelze použít rozklad
+            zpr["html"] = zpr["html"].format(
+                uvystrahy_ci_rozklad=f"<br>{zpr_nedostatek['rozklad_nelze']}"
+            )
+
+    zobraz_zpravu(zpr)
+
+
+def btn_vypocitat(ev):
     if input_potrebna.value.isnumeric() \
         and input_skutecna.value.isnumeric() \
             and input_max_rychlost.value.isnumeric():
@@ -78,87 +168,79 @@ def vypocitat(ev):
             # načtení vstupních hodnot
             global potrebna_procenta
             potrebna_procenta = int(input_potrebna.value)
+
             global skutecna_procenta
             skutecna_procenta = int(input_skutecna.value)
+
             global chybi_procent
             chybi_procent = potrebna_procenta - skutecna_procenta
             if chybi_procent < 0: chybi_procent = 0
+
             global max_rychlost
             max_rychlost = int(input_max_rychlost.value)
+
             # lokální pojmenování globálních proměnných
             potrebna_p = potrebna_procenta
             skutecna_p = skutecna_procenta
-            rychlost_vlaku = max_rychlost
+            vmax_puvodni = max_rychlost
             
-            zprava = "Maximální rychlost vlaku je {} km/h!"
-            zprava2 = "\nV úrovni návěsti Výstraha však max. {} km/h!"
-            nelze_rozklad = "\nNELZE použít rozklad."
-
-            # zjištění dalších vstupních parametrů
-            # skutečná procenta <= 45 ?
+            # zjištění dalších vstupních parametrů:
+            # a) skutečná procenta <= 45 ?
             if skutecna_p <= 45:
-                prc_mensi_45 = True
+                prc_45_a_mensi = True
             else:
-                prc_mensi_45 = False
-            # původní max. rychlost >= 120 km/h ?
-            if rychlost_vlaku >= 120:
-                rych_120_a_vice = True
+                prc_45_a_mensi = False
+            # b) původní max. rychlost >= 120 km/h ?
+            if vmax_puvodni >= 120:
+                rych_120_a_vetsi = True
             else:
-                rych_120_a_vice = False
+                rych_120_a_vetsi = False
+            
+            
+            # VÝPOČET:
+            vysledek = {
+                "stav_prc": None,  # (+/-) x %
+                "vmax_nova": None,
+                "vmax_vystraha": None,
+                "rozklad": None,  # False = nelze rozložit
+                "prc_45_a_mensi": False
+            }
+
             # chybějící procenta ?
-            prc_chybejici = potrebna_p - skutecna_p
+            chybi_p = potrebna_p - skutecna_p  # záporné číslo = přebývá
+            vysledek["stav_prc"] = chybi_p * (-1)
+
+            # a) Dostatek skutečných procent:
+            if chybi_p <= 0:
+                pass
+
+            # b) Nedostatek skutečných procent (výpočet):
+            else:  # chybi_p > 0
+
+                if prc_45_a_mensi:
+                    chybi_p *= 2
+                    vysledek["prc_45_a_mensi"] = True
+                
+                vmax_nova = vmax_puvodni - chybi_p
+                vysledek["vmax_nova"] = vmax_nova
+                
+                if rych_120_a_vetsi:
+                    if (vmax_nova - 20) > 120:  # ROZKLAD ano
+                        vmax_vystraha = vmax_nova - 20
+
+                        vysledek["vmax_vystraha"] = vmax_vystraha
+                        vysledek["rozklad"] = True
+
+                    else:  # ROZKLAD ne
+                        vmax_nova -= 20
+
+                        vysledek["vmax_nova"] = vmax_nova
+                        vysledek["rozklad"] = False
+
             
-            
-            if potrebna_p == skutecna_p:
-                zpracuj_vysledek("""Rychlost není třeba přepočítávat.
-    Brzděte již v dostatečné vzdálenosti před výstrahou!
+            zpracuj_vysledek(vysledek)
 
-    (Skutečná brzdící procenta jsou stejná jako potřebná.)""")
-            
-            elif 0 < (skutecna_p - potrebna_p) <= 10:
-                zpracuj_vysledek(f"""Rychlost není třeba přepočítávat.
-    Brzděte však v dostatečné vzdálenosti před výstrahou!
 
-    (Máte jen {skutecna_p - potrebna_p} % navíc.)""")
-
-            elif (skutecna_p - potrebna_p) > 10:
-                zpracuj_vysledek("Máte dostatek brzdících procent.")
-            
-            else:
-                # Výpočet
-                if prc_mensi_45 is False and rych_120_a_vice is False:  # ani <= 45 % A ZÁROVEŇ ani >= 120 km/h
-                    nova_rychlost = rychlost_vlaku - prc_chybejici
-                    zpracuj_vysledek(zprava.format(nova_rychlost))
-                    # print("((debug: 1))")  # debug
-
-                elif prc_mensi_45 and rych_120_a_vice is False:
-                    nova_rychlost = rychlost_vlaku - (2 * prc_chybejici)
-                    zpracuj_vysledek(zprava.format(nova_rychlost) + "\n\n(Skutečná % jsou <= 45.)")
-                    # print("((debug: 2))")  # debug
-
-                elif prc_mensi_45 is False and rych_120_a_vice:
-                    nova_rychlost = rychlost_vlaku - prc_chybejici
-                    if 120 < (nova_rychlost - 20):
-                        zpracuj_vysledek(zprava.format(nova_rychlost) + zprava2.format(nova_rychlost - 20))
-                        # print("((debug: 3a))")  # debug
-                    else:
-                        nova_rychlost -= 20
-                        zpracuj_vysledek(zprava.format(nova_rychlost) + nelze_rozklad)
-                        # print("((debug: 3b))")  # debug
-
-                elif prc_mensi_45 and rych_120_a_vice:
-                    nova_rychlost = rychlost_vlaku - (2 * prc_chybejici)
-                    if 120 < (nova_rychlost - 20):
-                        zpracuj_vysledek(zprava.format(nova_rychlost) + zprava2.format(nova_rychlost - 20) +
-                                    "\n\n(Skutečná % jsou <= 45.)")
-                        # print("((debug: 4a))")  # debug
-                    else:
-                        nova_rychlost -= 20
-                        zpracuj_vysledek(zprava.format(nova_rychlost) + nelze_rozklad + "\n\n(Skutečná % jsou <= 45.)")
-                        # print("((debug: 4b))")  # debug
-                else:
-                    print("((debug: 5 | toto else nemělo nastat = nějaká varianta je nedořešena))")  # debug
-                    pass
         else:
             # některé políčko formuláře obsahuje hodnotu <= 0
             chybne_vyplneni(ev,
@@ -168,7 +250,7 @@ def vypocitat(ev):
         # některé políčko formuláře neobsahuje číslo
         chybne_vyplneni(ev,
             title="Jak na to ?",
-            text="Jednoduše přepište všechny vyznačené údaje ze ZOB do formuláře\u2026")
+            text="Jednoduše opište všechny vyznačené údaje ze ZOB do formuláře\u2026")
 
 
 def input_zmena(ev):
@@ -208,10 +290,10 @@ def input_zmena(ev):
     # změna DOM - skryje či zobrazí formulář - existuje tabulka ano/ne
     if radio_tabulka_ano.checked:
         div_formular_vypocet.style.display = "none"
-        sw_alert({
+        zobraz_zpravu({
             "icon": "info",
             "title": "Existuje tabulka ?",
-            "text": "Při určení maximální rychlosti se tedy řiďte jejími údaji !",
+            "text": "Při určení maximální rychlosti se tedy řiďte jejími údaji!",
             "confirmButtonColor": BARVA_NORMAL
         })
     else:
@@ -250,7 +332,7 @@ titulek.textContent = NAZEV_APLIKACE
 podnadpis.textContent = VERZE
 
 # přiřazení funkcí k událostem
-button_vypocitat.bind("click", vypocitat)
+button_vypocitat.bind("click", btn_vypocitat)
 button_reset.bind("click", reset)
 for input in document.select("input"):
     input.bind("change", input_zmena)
