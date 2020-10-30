@@ -1,4 +1,4 @@
-const version = '0.B.3'
+const version = '0.A.3'
 const cacheName = 'brzdenka-${version}';
 self.addEventListener('install', e => {
   e.waitUntil(
