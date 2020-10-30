@@ -22,11 +22,11 @@
 
 ## Varování
 
-AUTOR NERUČÍ ZA SPRÁVNOST GENEROVANÝCH ÚDAJŮ
+AUTOR NERUČÍ ZA SPRÁVNOST JAKÝCHKOLI INFORMACÍ ČI GENEROVANÝCH VÝSTUPŮ (VÝPOČTŮ)
 
 ## Licence
 
 Brzděnka+, jejímž autorem je Martin TÁBOR, podléhá licenci:
 Creative Commons Uveďte původ-Neužívejte dílo komerčně-Zachovejte licenci 4.0 Mezinárodní.
 
-Pro zobrazení licenčních podmínek navštivte: [http://creativecommons.org/licenses/by-nc-sa/4.0//](//creativecommons.org/licenses/by-nc-sa/4.0/)
+Pro zobrazení licenčních podmínek navštivte: [http://creativecommons.org/licenses/by-nc-sa/4.0/](//creativecommons.org/licenses/by-nc-sa/4.0/)
