@@ -47,14 +47,15 @@ def zobraz_zpravu(zprava, footer=True):
 def chybne_vyplneni(ev, title, text):
     zobraz_zpravu(
         {
-            "title": "&mdash;\n" + title,
+            "title": "- - -\n" + title,
             "text": text,
             "icon": "question",
             "confirmButtonText": "Heuréka",
             "confirmButtonColor": BARVA_NORMAL,
             "showCloseButton": True,
             "imageUrl": OBRAZEK_ZOB,
-            "imageAlt": "Zpráva o brzdění z POP"
+            "imageAlt": "Zpráva o brzdění z POP",
+            "imageHeight": 180
         },
         footer=False
     )
@@ -74,14 +75,14 @@ def zpracuj_vysledek(vysledek):
     zpr_dostatek = {
         "zpr": "Rychlost není třeba přepočítávat.",
         "dostatek": "(Máte dostatek brzdících procent.)",
-        "navic_jen": f"(Máte ale pouze {stav_prc} % navíc!)",
+        "navic_jen": f"(Máte ale pouze {stav_prc}&nbsp;% navíc!)",
         "zadna_navic": "(Nemáte však žádná brzdící % navíc!)"
     }
     zpr_nedostatek = {
-        "zpr": f"Maximální rychlost vlaku je <strong>{vmax_nova} km/h</strong>!",
-        "u_vystrahy": f"V úrovni návěsti <strong>Výstraha</strong> však max. <strong>{vmax_vystraha} km/h</strong>!",
+        "zpr": f"Maximální rychlost vlaku je <strong>{vmax_nova}&nbsp;km/h</strong>!",
+        "u_vystrahy": f"V úrovni návěsti <strong>Výstraha</strong> však max. <strong>{vmax_vystraha}&nbsp;km/h</strong>!",
         "rozklad_nelze": "(Nelze použít rozklad.)",
-        "nepojede": "Vlak nemůže odjet!<br><em>(Vypočítaná rychlost je 0 km/h \u2026)</em>",
+        "nepojede": "Vlak nemůže odjet!<br><em>(Vypočítaná rychlost je 0&nbsp;km/h&nbsp;\u2026)</em>",
         "oznam": "Nezapomeňte informovat dispečera osobní dopravy!"
     }
     zpr_opatrne = "<em>Začněte brzdit v dostatečné vzdálenosti před Výstrahou!</em>"

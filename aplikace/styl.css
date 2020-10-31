@@ -106,7 +106,7 @@ button {
     display: inline-block;
     text-decoration: none;
     padding: 15px 25px;
-    margin: auto 2px auto 2px;
+    margin: 2px;
     border-radius: 8px;
     transition: 0.3s;
 }
