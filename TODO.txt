@@ -1,0 +1,6 @@
+1) aktualizovat soubor materialy/textove_retezce.txt
+2) vylepšit SweetAlert při chybném zadání:
+	poskakování při načítání obrázku,
+	lepší příklad ZOB
+3) opravit PWA:
+	chybová hláška Failed to register a ServiceWorker

@@ -1,0 +1,28 @@
+SEZNAM ZPRÁV:
+
+1) Rychlost není třeba přepočítávat.
+     a) Máte dostatek brzdících procent.
+     b) Máte jen {x} % navíc.
+     c) Nemáte však žádná brzdící % navíc!
+
+2) Maximální rychlost vlaku je {x} km/h!
+     a) V úrovni návěsti Výstraha však max. {y} km/h!
+	 b) Nelze použít rozklad.
+
+3) Vlak nemůže jet! Vypočítaná rychlost je 0 km/h.
+
+A) (Začněte brzdit v dostatečné vzdálenosti před Výstrahou!)
+B) (Skutečná brzdící % jsou 45 či méně.)
+
+
+MOŽNÉ VARIANTY:
+
+1 + a
+1 + b + A
+1 + c + A
+
+2 + A
+2 + a + A
+2 + b + A
+
+3

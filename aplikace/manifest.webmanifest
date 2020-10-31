@@ -1,7 +1,7 @@
 {
     "name": "Brzd\u011bnka+",
     "short_name": "Brzd\u011bnka+",
-    "start_url": "/",
+    "start_url": "./",
     "icons": [
         {
             "src": "obrazky/ikony/android-chrome-192x192.png",
