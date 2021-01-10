@@ -2,14 +2,14 @@
 ================================     POPIS:
 |          BRZDĚNKA +          |       Výpočet rychlosti vlaku při nedostatku brzdících procent.
 ================================     
-|                              |     WEB:
-|    verze: 0.3 | 0.A.3 (β)    |       * Aplikace: http://martintabor.eu/brzdenka
-|                              |       * Zdrojový kód: http://github.com/ma-ta/brzdenka-plus
+|                              |     ZDROJE:
+|     ver.: 0.3.1 | 21.110     |       * Zdrojový kód: github.com/ma-ta/brzdenka-plus
+|                              |       
 |    Freeware | Open source    |     
 |       CC: BY-NC-SA 4.0       |     VAROVÁNÍ:
 |                              |       
 ================================       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-|     © 2020  Martin TÁBOR     |       !!!  AUTOR NERUČÍ ZA SPRÁVNOST JAKÝCHKOLI ÚDAJŮ  !!!
+|     © 2021  Martin TÁBOR     |       !!!  AUTOR NERUČÍ ZA SPRÁVNOST JAKÝCHKOLI ÚDAJŮ  !!!
 ================================       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
@@ -18,4 +18,3 @@ Creative Commons Uveďte původ-Neužívejte dílo komerčně-Zachovejte licenci
 
 Pro zobrazení licenčních podmínek navštivte:
 http://creativecommons.org/licenses/by-nc-sa/4.0/
-
