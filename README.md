@@ -17,7 +17,7 @@
 
 ## Snímky obrazovky
 
-> Smartphone (responzivní design):
+> Smartphone, tablet (responzivní design)
 
 ![Brzdenka+ na smartphonu](/brzdenka-smartphone.png)
 
