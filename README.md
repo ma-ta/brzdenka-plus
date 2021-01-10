@@ -15,6 +15,12 @@
 ================================
 ```
 
+## Snímky obrazovky
+
+> Smartphone (responzivní design)
+
+![Brzdenka+ na smartphonu](/brzdenka-smartphone.png)
+
 ## Odkazy
 
 - **[webová aplikace](//martintabor.eu/brzdenka)**
