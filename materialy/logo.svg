@@ -12,8 +12,8 @@
    viewBox="0 0 135.46667 135.46667"
    version="1.1"
    id="svg8"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
-   sodipodi:docname="vystraha.svg"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="logo.svg"
    inkscape:export-filename="C:\Users\n0\Desktop\vystraha.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
@@ -27,14 +27,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.77504209"
-     inkscape:cx="19.824111"
-     inkscape:cy="255.94032"
+     inkscape:cx="19.824127"
+     inkscape:cy="255.94034"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1116"
+     inkscape:window-height="1121"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -59,9 +59,9 @@
      inkscape:label="Vrstva 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-37.282458,-80.782458)">
+     transform="translate(-37.282454,-80.782454)">
     <g
-       id="g14">
+       id="g837">
       <circle
          style="fill:#ffffff;stroke:#000000;stroke-width:1.32323;stroke-miterlimit:4;stroke-dasharray:none"
          id="path1931-6"
@@ -69,7 +69,7 @@
          cy="148.51579"
          r="67.071724" />
       <circle
-         style="fill:#ffff00;stroke:#000000;stroke-width:2.42963;stroke-miterlimit:4;stroke-dasharray:none"
+         style="fill:#faf200;fill-opacity:1;stroke:#000000;stroke-width:2.42967;stroke-miterlimit:4;stroke-dasharray:none"
          id="path1931"
          cx="105.01579"
          cy="148.51579"

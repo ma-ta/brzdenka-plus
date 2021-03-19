@@ -1,4 +1,4 @@
-const ver = "21.110";
+const ver = "0.4";
 const cacheName = "brzdenka-${ver}";
 self.addEventListener('install', e => {
   e.waitUntil(
@@ -18,6 +18,7 @@ self.addEventListener('install', e => {
         // 'obrazky/zob-popka.jpg',
         // 'obrazky/zob-popka.webp',
         'obrazky/zob-txtgrafika.png',
+        'obrazky/zob-txtgrafika-cerna.png',
         'obrazky/ikony/android-chrome-192x192.png',
         'obrazky/ikony/android-chrome-512x512.png',
         'obrazky/ikony/apple-touch-icon.png',

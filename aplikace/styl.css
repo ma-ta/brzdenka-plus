@@ -1,3 +1,18 @@
+:root {
+    --barva-pozadi: #202124;
+    --barva-pismo: #E8EAED;
+    --barva-pismo-karta: #292A2D;
+    --barva-pismo-placeholder: #9AA0A6;
+    --barva-vyber-pozadi: #0864D5;
+    --barva-vyber-pismo: white;
+
+    --cervena: #DB4437;
+    --zluta: #faf200;
+    --zelena: #81C995;
+    --modra: #8AB4F8;
+    --modra-tmavsi: #4285F4;
+}
+
 @font-face {
     font-family: 'Montserrat';
     src: url('fonty/Montserrat-Regular.woff2') format('woff2');
@@ -13,8 +28,8 @@
 }
 
 ::selection {
-    background-color: #0093ff;
-    color: white;
+    background-color: var(--barva-vyber-pozadi);
+    color: var(--barva-vyber-pismo);
 }
 
 body {
@@ -23,6 +38,8 @@ body {
     line-height: 1.5;
     font-size: 12pt;
     min-width: 290px;
+    color: var(--barva-pismo);
+    background-color: var(--barva-pozadi);
 }
 
 #img_logo {
@@ -36,8 +53,8 @@ body {
 }
 
 header {
-    background-color: whitesmoke;
     padding: 25px;
+    margin-bottom: 15px;
 }
 
 header h1 {
@@ -47,8 +64,25 @@ header h1 {
 }
 
 section {
-    padding: 25px;
+    padding: 20px;
     text-align: center;
+}
+
+fieldset {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 1px 2px 3px #191A1D;
+    margin-bottom: 25px;
+    padding: 0;
+    background-color: var(--barva-pismo-karta);
+}
+
+fieldset div {
+    padding: 0 15px 25px 15px;
+}
+
+fieldset .cara_nahore {
+    border-top: 1px dotted var(--barva-pismo-placeholder);
 }
 
 .tabulka_uprostred {
@@ -69,26 +103,45 @@ section {
     font-family: 'Montserrat', serif;
 }
 
+.nadpis_modul {
+    font-size: 14pt;
+    margin-bottom: 30px;
+    text-align: left;
+    margin-top: 0;
+    margin-left: 25px;
+}
+.nadpis_formular {
+    font-size: 12pt;
+    font-weight: normal;
+    margin: 25px 0 25px 0;
+}
+
 input[type=text], input[type=number] {
     width: 100%;
     border-top-color: transparent;
     border-right-color: transparent;
-    border-bottom-color: whitesmoke;
+    border-bottom-color: var(--barva-pismo-placeholder);
+    border-bottom-style: dotted;
     border-left: transparent;
+    background-color: transparent;
+    color: var(--barva-pismo);
+}
+input::placeholder {
+    color: var(--barva-pismo-placeholder);
 }
 
 input[type=text]:focus, input[type=number]:focus {
     outline: none;
-    border-bottom-color: lightgray;
+    border-bottom-color: var(--barva-pismo);
     transition: 0.3s;
 }
 
 #label_chybejici_procenta {
-    color: #0073d7;
+    color: var(--zluta);
     font-weight: bold;
 }
 #input_chybejici_procenta {
-    color: #0073d7; /* červená: #D70000 */
+    color: var(--zluta);
     background-color: black;
     font-weight: bold;
     background-color: transparent;
@@ -98,9 +151,9 @@ input[type=text]:focus, input[type=number]:focus {
 
 button {
     user-select: none;
-    background-color: white;
-    border: #0073d7 2px solid;
-    color: #0073d7;
+    background-color: transparent;
+    border: var(--zluta) 2px dotted;
+    color: var(--zluta);
     font-size: 12pt;
     font-family: 'Montserrat', serif;
     display: inline-block;
@@ -112,27 +165,44 @@ button {
 }
 button:hover, button:focus {
     outline-width: 0;
-    background-color: #0073d715;
+    background-color: #faf20011;
 }
 button:active {
     border-style: solid;
-    background-color: #0073d7;
-    color: white;
+    background-color: var(--zluta);
+    color: black;
 }
 
 #button_reset {
-    background-color: white;
-    color: #D70000;
-    border-color: white;
+    color: var(--cervena);
+    border-color: var(--cervena);
     border-style: dotted;
     padding: 10px 25px;
+    border-color: transparent;
 }
 #button_reset:hover, #button_reset:focus {
-    background-color: #d7000015;
-    border-color: #D70000;
+    background-color: #db443711;
+    border-color: var(--cervena);
 }
 #button_reset:active {
     border-style: solid;
-    background-color: #D70000;
+    background-color: var(--cervena);
     color: white;
+}
+
+
+/* SweetAlert */
+.swal2-styled.swal2-confirm {
+    color: #19191a !important;
+    /* background-color: var(--zelena) !important; */
+}
+
+.swal2-styled.swal2-deny {
+    color: #19191a !important;
+    /* background-color: var(--cervena); */
+}
+
+.swal2-styled.swal2-cancel {
+    color: #19191a !important;
+    /* background-color: var(--zluta); */
 }

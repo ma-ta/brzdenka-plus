@@ -5,15 +5,20 @@ sw_alert = window.Swal.fire
 
 # globální konstanty
 NAZEV_APLIKACE = "Brzděnka+"
-VERZE = "verze 0.3.1 | 2021-01"
+VERZE = "verze 0.4 | 2021-03"
 AKTUALNI_ROK = Date.new().getFullYear()
 AUTOR = f"\u00A9 {AKTUALNI_ROK}&nbsp;&nbsp;Martin TÁBOR"
 UPOZORNENI = "!!! Všechny informace jsou bez záruky !!!".upper()
-OBRAZEK_ZOB = "./obrazky/zob-txtgrafika.png"
+OBRAZEK_ZOB = "./obrazky/zob-txtgrafika-cerna.png"
 
-BARVA_NORMAL = "#0073d7"  # modrá
-BARVA_POZOR = "#D70000"  # červená
-BARVA_OK = "#00D700"  # zelená
+BARVA_NORMAL = "#faf200"  # žlutá
+BARVA_NORMAL_SWA_IKONA = "#f2f274"  # světle žlutá
+BARVA_POZOR = "#db4437"  # červená
+BARVA_OK = "#81c995"  # zelená
+BARVA_MODRA = "8ab4f8"  # modrá
+# tmavé téma
+BARVA_PISMA = "#e8eaed"  # téměř bílá
+BARVA_POZADI = "#202124"  # téměř černá
 
 # deklarace globálních proměnných
 tabulka_rychlosti = False
@@ -27,7 +32,7 @@ titulek = document["titulek"]
 podnadpis = document["podnadpis"]
 radio_tabulka_ano = document["radio_tabulka_ano"]
 radio_tabulka_ne = document["radio_tabulka_ne"]
-div_formular_vypocet = document["formular_vypocet"]
+div_formular_skryt = document["skryt"]
 input_potrebna = document["input_potrebna_procenta"]
 input_skutecna = document["input_skutecna_procenta"]
 label_chybejici = document["label_chybejici_procenta"]
@@ -51,7 +56,7 @@ def chybne_vyplneni(ev, title, text):
             "text": text,
             "icon": "question",
             "confirmButtonText": "Heuréka",
-            "confirmButtonColor": BARVA_NORMAL,
+            "confirmButtonColor": BARVA_MODRA,
             "showCloseButton": True,
             "imageUrl": OBRAZEK_ZOB,
             "imageAlt": "Zpráva o brzdění z POP",
@@ -105,15 +110,16 @@ def zpracuj_vysledek(vysledek):
                 zpr_nedostatek['oznam'],
         
         "icon": "warning",
+        "iconColor": BARVA_NORMAL_SWA_IKONA,
         "confirmButtonText": "Budiž",
-        "confirmButtonColor": BARVA_POZOR
+        "confirmButtonColor": BARVA_NORMAL
     }
 
 
     # VYHODNOCENÍ:
 
     # a) Dostatek skutečných procent:
-    KONSTANTA_OBEZRETNOSTI = 10  # hodnotí, zda přebývá více než 10 %
+    KONSTANTA_OBEZRETNOSTI = 20  # hodnotí, zda přebývá více než 20 %
     zpr = swa_zpr_dostatek
 
     if stav_prc > KONSTANTA_OBEZRETNOSTI:  # DOSTATEK
@@ -290,15 +296,16 @@ def input_zmena(ev):
     
     # změna DOM - skryje či zobrazí formulář - existuje tabulka ano/ne
     if radio_tabulka_ano.checked:
-        div_formular_vypocet.style.display = "none"
+        div_formular_skryt.style.display = "none"
         zobraz_zpravu({
             "icon": "info",
             "title": "Existuje tabulka ?",
             "text": "Při určení maximální rychlosti se tedy řiďte jejími údaji!",
-            "confirmButtonColor": BARVA_NORMAL
+            "confirmButtonColor": BARVA_NORMAL,
+            "iconColor": BARVA_NORMAL_SWA_IKONA
         })
     else:
-        div_formular_vypocet.style.display = "unset"
+        div_formular_skryt.style.display = "inherit"
 
 
 # změna DOM - smaže formulář
