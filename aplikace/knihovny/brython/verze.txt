@@ -1,2 +1,2 @@
-Brython 3.9.1
+Brython 3.9.3
 https://github.com/brython-dev/brython/releases
