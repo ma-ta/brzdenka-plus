@@ -23,7 +23,7 @@
 
 ## Odkazy
 
-- **[webová aplikace](//martintabor.eu/brzdenka)**
+- **[webová aplikace](//ma-ta.github.io/brzdenka-plus/aplikace/)**
 - [zdrojový kód](//github.com/ma-ta/brzdenka-plus/tree/main/aplikace)
 
 ### Závislosti (knihovny)
