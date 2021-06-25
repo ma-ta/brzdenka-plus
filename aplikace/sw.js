@@ -1,4 +1,4 @@
-const ver = "0.4";
+const ver = "0.1";
 const cacheName = "brzdenka-${ver}";
 self.addEventListener('install', e => {
   e.waitUntil(

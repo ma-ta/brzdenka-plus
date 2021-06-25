@@ -5,7 +5,7 @@ sw_alert = window.Swal.fire
 
 # globální konstanty
 NAZEV_APLIKACE = "Brzděnka+"
-VERZE = "verze 0.4.1 | 2021-06"
+VERZE = "verze 0.1 | 2021-25"
 AKTUALNI_ROK = Date.new().getFullYear()
 AUTOR = f"\u00A9 {AKTUALNI_ROK}&nbsp;&nbsp;Martin TÁBOR"
 UPOZORNENI = "!!! Všechny informace jsou bez záruky !!!".upper()
@@ -298,8 +298,8 @@ def input_zmena(ev):
         div_formular_skryt.style.display = "none"
         zobraz_zpravu({
             "icon": "info",
-            "title": "Existuje tabulka ?",
-            "text": "Při určení maximální rychlosti se tedy řiďte jejími údaji!",
+            "title": "Existuje jiné opatření ?",
+            "text": "Při určení maximální rychlosti tedy postupujte v souladu s ním!",
             "confirmButtonColor": BARVA_NORMAL,
             "iconColor": BARVA_NORMAL_SWA_IKONA
         })

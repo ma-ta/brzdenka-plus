@@ -1,4 +1,4 @@
-SweetAlert 11.0.16
+SweetAlert 11.0.18
 https://www.jsdelivr.com/package/npm/sweetalert2
 
 Themes 5.0.0
