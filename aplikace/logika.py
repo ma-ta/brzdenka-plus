@@ -5,9 +5,11 @@ sw_alert = window.Swal.fire
 
 # globální konstanty
 NAZEV_APLIKACE = "Brzděnka+"
-VERZE = "verze 0.1 | 2021-06"
+VERZE = "verze 0.1 | 2021-07"
+JMENO_AUTORA = "Martin TÁBOR"
+
 AKTUALNI_ROK = Date.new().getFullYear()
-AUTOR = f"\u00A9 {AKTUALNI_ROK}&nbsp;&nbsp;Martin TÁBOR"
+AUTOR = f"\u00A9 2020\u2013{str(AKTUALNI_ROK)[2:]}&nbsp;&nbsp;{JMENO_AUTORA}"
 UPOZORNENI = "!!! Všechny informace jsou bez záruky !!!".upper()
 OBRAZEK_ZOB = "./obrazky/zob-txtgrafika-cerna.png"
 

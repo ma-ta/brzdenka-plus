@@ -194,7 +194,8 @@ button:active {
 /* SweetAlert */
 .swal2-styled.swal2-confirm {
     color: #19191a !important;
-    /* background-color: var(--zelena) !important; */
+    /* ovlivní všechna tlačítka - upraveno přímo v css knihovny */
+    /* background-color: var(--modra) !important; */
 }
 
 .swal2-styled.swal2-deny {
