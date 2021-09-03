@@ -5,7 +5,7 @@ sw_alert = window.Swal.fire
 
 # globální konstanty
 NAZEV_APLIKACE = "Brzděnka+"
-VERZE = "verze 0.1 | 2021-07"
+VERZE = "verze 0.1 | 2021-09"
 JMENO_AUTORA = "Martin TÁBOR"
 
 AKTUALNI_ROK = Date.new().getFullYear()
