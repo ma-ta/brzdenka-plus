@@ -1,5 +1,8 @@
 # Brzděnka+
 
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ma-ta/serio?include_prereleases)
+![GitHub](https://img.shields.io/github/license/ma-ta/serio)
+
 ```text
 ================================
 |          BRZDĚNKA +          |    Výpočet rychlosti vlaku při nedostatku brzdících procent.
