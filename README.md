@@ -1,7 +1,5 @@
 # Brzděnka+
 
-![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/ma-ta/brzdenka-plus?include_prereleases)
-![GitHub](https://img.shields.io/github/license/ma-ta/brzdenka-plus)
 
 ```text
 ================================
