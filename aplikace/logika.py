@@ -5,7 +5,7 @@ sw_alert = window.Swal.fire
 
 # globální konstanty
 NAZEV_APLIKACE = "Brzděnka+"
-VERZE = "verze 0.1 | 2021-09"
+VERZE = "verze 0.1.1 | 2022-11"
 JMENO_AUTORA = "Martin TÁBOR"
 
 AKTUALNI_ROK = Date.new().getFullYear()
@@ -104,12 +104,12 @@ def zpracuj_vysledek(vysledek):
     }
     swa_zpr_nedostatek = {
         "title": "Zpomal!",
-        
+
         "html": zpr_nedostatek['zpr'] +
                 "{uvystrahy_ci_rozklad}<br><br>" +
                 zpr_opatrne + "<br><br>" +
                 zpr_nedostatek['oznam'],
-        
+
         "icon": "warning",
         "iconColor": BARVA_NORMAL_SWA_IKONA,
         "confirmButtonText": "Budiž",
@@ -136,26 +136,26 @@ def zpracuj_vysledek(vysledek):
     elif vmax_nova <= 0:  # rychlost <= 0 km/h
         zpr = {
             "title": "Stůj!",
-            
+
             "html": zpr_nedostatek["nepojede"],
-            
+
             "icon": "error",
             "confirmButtonText": "Bohužel",
             "confirmButtonColor": BARVA_POZOR
         }
-        
+
     else:
         zpr = swa_zpr_nedostatek
         if rozklad is None:  # pro rychlost < 120 km/h
             zpr["html"] = zpr["html"].format(
                 uvystrahy_ci_rozklad=""
             )
-        
+
         elif rozklad is True:  # u Výstrahy o 20 km/h méně
             zpr["html"] = zpr["html"].format(
                 uvystrahy_ci_rozklad=f"<br>{zpr_nedostatek['u_vystrahy']}"
             )
-        
+
         elif rozklad is False:  # nelze použít rozklad
             zpr["html"] = zpr["html"].format(
                 uvystrahy_ci_rozklad=f"<br>{zpr_nedostatek['rozklad_nelze']}"
@@ -165,6 +165,11 @@ def zpracuj_vysledek(vysledek):
 
 
 def btn_vypocitat(ev):
+    global potrebna_procenta
+    global skutecna_procenta
+    global chybi_procent
+    global max_rychlost
+
     if input_potrebna.value.isnumeric() \
         and input_skutecna.value.isnumeric() \
             and input_max_rychlost.value.isnumeric():
@@ -174,24 +179,19 @@ def btn_vypocitat(ev):
                 and max_rychlost > 0:
 
             # načtení vstupních hodnot
-            global potrebna_procenta
             potrebna_procenta = int(input_potrebna.value)
-
-            global skutecna_procenta
             skutecna_procenta = int(input_skutecna.value)
 
-            global chybi_procent
             chybi_procent = potrebna_procenta - skutecna_procenta
             if chybi_procent < 0: chybi_procent = 0
 
-            global max_rychlost
             max_rychlost = int(input_max_rychlost.value)
 
             # lokální pojmenování globálních proměnných
             potrebna_p = potrebna_procenta
             skutecna_p = skutecna_procenta
             vmax_puvodni = max_rychlost
-            
+
             # zjištění dalších vstupních parametrů:
             # a) skutečná procenta <= 45 ?
             if skutecna_p <= 45:
@@ -203,8 +203,8 @@ def btn_vypocitat(ev):
                 rych_120_a_vetsi = True
             else:
                 rych_120_a_vetsi = False
-            
-            
+
+
             # VÝPOČET:
             vysledek = {
                 "stav_prc": None,  # (+/-) x %
@@ -228,10 +228,10 @@ def btn_vypocitat(ev):
                 if prc_45_a_mensi:
                     chybi_p *= 2
                     vysledek["prc_45_a_mensi"] = True
-                
+
                 vmax_nova = vmax_puvodni - chybi_p
                 vysledek["vmax_nova"] = vmax_nova
-                
+
                 if rych_120_a_vetsi:
                     if (vmax_nova - 20) > 120:  # ROZKLAD ano
                         vmax_vystraha = vmax_nova - 20
@@ -245,7 +245,7 @@ def btn_vypocitat(ev):
                         vysledek["vmax_nova"] = vmax_nova
                         vysledek["rozklad"] = False
 
-            
+
             zpracuj_vysledek(vysledek)
 
 
@@ -269,7 +269,7 @@ def input_zmena(ev):
 
         global potrebna_procenta
         potrebna_procenta = int(input_potrebna.value)
-        
+
         global skutecna_procenta
         skutecna_procenta = int(input_skutecna.value)
 
@@ -294,7 +294,7 @@ def input_zmena(ev):
     if input_max_rychlost.value.isnumeric():
         global max_rychlost
         max_rychlost = int(input_max_rychlost.value)
-    
+
     # změna DOM - skryje či zobrazí formulář - existuje tabulka ano/ne
     if radio_tabulka_ano.checked:
         div_formular_skryt.style.display = "none"
@@ -314,7 +314,7 @@ def reset(ev):
     global tabulka_rychlosti
     tabulka_rychlosti = False
     radio_tabulka_ne.checked = True
-    
+
     global potrebna_procenta
     potrebna_procenta = 0
     input_potrebna.value = ""
@@ -330,7 +330,7 @@ def reset(ev):
     global max_rychlost
     max_rychlost = 0
     input_max_rychlost.value = ""
-    
+
     label_chybejici.style.color = BARVA_NORMAL
     input_chybejici.style.color = BARVA_NORMAL
 

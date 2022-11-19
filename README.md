@@ -5,10 +5,10 @@
 
 ```text
 ================================
-|          BRZDĚNKA +          |    Výpočet rychlosti vlaku při nedostatku brzdicích procent.
+|          BRZDĚNKA +          |    Výpočet rychlosti vlaku při nedostatku brzdících procent.
 ================================
 |                              |    (webová aplikace)
-|     ver.: 0.1.0 | 22.703     |
+|     ver.: 0.1.1 | 22.B19     |
 |                              |
 |    Freeware | Open source    |
 |        Licence: GPLv3        |

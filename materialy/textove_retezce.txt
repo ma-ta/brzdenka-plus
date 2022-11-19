@@ -7,7 +7,7 @@ SEZNAM ZPRÁV:
 
 2) Maximální rychlost vlaku je {x} km/h!
      a) V úrovni návěsti Výstraha však max. {y} km/h!
-	 b) Nelze použít rozklad.
+     b) Nelze použít rozklad.
 
 3) Vlak nemůže jet! Vypočítaná rychlost je 0 km/h.
 
