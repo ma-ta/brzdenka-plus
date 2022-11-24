@@ -3,7 +3,7 @@
 |          BRZDĚNKA +          |       Výpočet rychlosti vlaku při nedostatku brzdících procent.
 ================================
 |                              |     ZDROJE:
-|     ver.: 0.1.1 | 22.B19     |       * Zdrojový kód: github.com/ma-ta/brzdenka-plus
+|     ver.: 0.1.0 | 22.B19     |       * Zdrojový kód: github.com/ma-ta/brzdenka-plus
 |                              |
 |    Freeware | Open source    |
 |        Licence: GPLv3        |     VAROVÁNÍ:
