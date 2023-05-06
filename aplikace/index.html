@@ -7,8 +7,8 @@
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <meta name="description" content="Výpočet rychlosti vlaku při nedostatku brzdících procent">
-    <meta name="keywords" content="zob, zpráva o brzdění vlaku, brzdící procenta, brzděnka">
+    <meta name="description" content="Výpočet rychlosti vlaku při nedostatku brzdicích procent">
+    <meta name="keywords" content="zob, zpráva o brzdění vlaku, brzdicí procenta, brzděnka">
     <meta name="author" content="Martin TÁBOR">
 
     <link rel="stylesheet" href="styl.css">
@@ -50,7 +50,7 @@
 
     <article>
 
-        <h1 class="nadpis_modul">Výpočet rychlosti při nedostatku brzdících %</h1>
+        <h1 class="nadpis_modul">Výpočet rychlosti při nedostatku brzdicích %</h1>
 
         <form id="kalkulacka">
             <fieldset>
@@ -64,19 +64,19 @@
                 </div>
                 <div id="skryt" class="cara_nahore">
                     <div id="formular_vypocet">
-                        <h2 class="nadpis_formular">Brzdící procenta dle <span title="Zprávy o brzdění">ZOB</span></h2>
+                        <h2 class="nadpis_formular">brzdicí procenta dle <span title="Zprávy o brzdění">ZOB</span></h2>
                         <table class="tabulka_uprostred">
                             <tr>
-                                <td><label for="input_potrebna_procenta" title="brzdící %">Potřebná:</label></td>
-                                <td><input onClick="this.select()" type="number" id="input_potrebna_procenta" min="0" placeholder="brzdící %" title="brzdící %"></td>
+                                <td><label for="input_potrebna_procenta" title="brzdicí %">Potřebná:</label></td>
+                                <td><input onClick="this.select()" type="number" id="input_potrebna_procenta" min="0" placeholder="brzdicí %" title="brzdicí %"></td>
                             </tr>
                             <tr>
-                                <td><label for="input_skutecna_procenta" title="brzdící %">Skutečná:</label></td>
-                                <td><input onClick="this.select()" type="number" id="input_skutecna_procenta"  min="0" placeholder="brzdící %" title="brzdící %"></td>
+                                <td><label for="input_skutecna_procenta" title="brzdicí %">Skutečná:</label></td>
+                                <td><input onClick="this.select()" type="number" id="input_skutecna_procenta"  min="0" placeholder="brzdicí %" title="brzdicí %"></td>
                             </tr>
                             <tr class="tr_chybejici_procenta">
-                                <td><label for="input_chybejici_procenta" id="label_chybejici_procenta" title="brzdící %">Chybějící:</label></td>
-                                <td><input type="number" id="input_chybejici_procenta"  min="0" placeholder="0" value="0" title="brzdící %" tabindex="-1" readonly></td>
+                                <td><label for="input_chybejici_procenta" id="label_chybejici_procenta" title="brzdicí %">Chybějící:</label></td>
+                                <td><input type="number" id="input_chybejici_procenta"  min="0" placeholder="0" value="0" title="brzdicí %" tabindex="-1" readonly></td>
                             </tr>
                             <tr>
                                 <td><label for="input_max_rychlost" title="km/h">Max. rychlost:</label></td>

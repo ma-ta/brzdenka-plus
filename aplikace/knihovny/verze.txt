@@ -1,7 +1,7 @@
-- Brython 3.11.0
+- Brython 3.11.2
   https://github.com/brython-dev/brython/releases
 
-- SweetAlert 11.6.9
+- SweetAlert 11.7.5
   https://www.jsdelivr.com/package/npm/sweetalert2
-- SweetAlert Themes 5.0.14
+- SweetAlert Themes 5.0.15
   https://www.jsdelivr.com/package/npm/@sweetalert2/themes

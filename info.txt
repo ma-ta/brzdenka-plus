@@ -3,13 +3,13 @@
 |          BRZDĚNKA +          |       Výpočet rychlosti vlaku při nedostatku brzdících procent.
 ================================
 |                              |     ZDROJE:
-|     ver.: 0.1.0 | 22.B19     |       * Zdrojový kód: github.com/ma-ta/brzdenka-plus
+|     ver.: 0.1.0 | 23.E06     |       * Zdrojový kód: github.com/ma-ta/brzdenka-plus
 |                              |
 |    Freeware | Open source    |
 |        Licence: GPLv3        |     VAROVÁNÍ:
 |                              |
 ================================       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-|     © 2022  Martin TÁBOR     |       !!!  AUTOR NERUČÍ ZA SPRÁVNOST JAKÝCHKOLI ÚDAJŮ  !!!
+|     © 2023  Martin TÁBOR     |       !!!  AUTOR NERUČÍ ZA SPRÁVNOST JAKÝCHKOLI ÚDAJŮ  !!!
 ================================       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 

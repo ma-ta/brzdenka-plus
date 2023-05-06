@@ -5,7 +5,7 @@ sw_alert = window.Swal.fire
 
 # globální konstanty
 NAZEV_APLIKACE = "Brzděnka+"
-VERZE = "verze 0.1.0 | 2022-11"
+VERZE = "verze 0.1.0 | 2023-05"
 JMENO_AUTORA = "Martin TÁBOR"
 
 AKTUALNI_ROK = Date.new().getFullYear()
@@ -80,9 +80,9 @@ def zpracuj_vysledek(vysledek):
     # seznam zpráv:
     zpr_dostatek = {
         "zpr": "Rychlost není třeba přepočítávat.",
-        "dostatek": "(Máte dostatek brzdících procent.)",
+        "dostatek": "(Máte dostatek brzdicích procent.)",
         "navic_jen": f"(Máte ale pouze {stav_prc}&nbsp;% navíc!)",
-        "zadna_navic": "(Nemáte však žádná brzdící % navíc!)"
+        "zadna_navic": "(Nemáte však žádná brzdicí % navíc!)"
     }
     zpr_nedostatek = {
         "zpr": f"Maximální rychlost vlaku je <strong>{vmax_nova}&nbsp;km/h</strong>!",
@@ -92,7 +92,7 @@ def zpracuj_vysledek(vysledek):
         "oznam": "Nezapomeňte informovat dispečera osobní dopravy!"
     }
     zpr_opatrne = "<em>Začněte brzdit v dostatečné vzdálenosti před Výstrahou!</em>"
-    zpr_prc_45_a_mensi = "(Skutečná brzdící % jsou 45 či méně.)"
+    zpr_prc_45_a_mensi = "(Skutečná brzdicí % jsou 45 či méně.)"
 
 
     swa_zpr_dostatek = {
