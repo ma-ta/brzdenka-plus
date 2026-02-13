@@ -8,13 +8,13 @@
 |          BRZDĚNKA +          |    Výpočet rychlosti vlaku při nedostatku brzdících procent.
 ================================
 |                              |    (webová aplikace)
-|     ver.: 0.1.0 | 23.E06     |
+|     ver.: 1.0.0 | 260213     |
 |                              |
 |    Freeware | Open source    |
 |        Licence: GPLv3        |
 |                              |
 ================================
-|     © 2023  Martin TÁBOR     |
+|     © 2026  Martin TÁBOR     |
 ================================
 ```
 

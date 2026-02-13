@@ -56,13 +56,17 @@
             <fieldset>
 
                 <div id="formular_rychlost-dle-tabulky">
-                    <h2 class="nadpis_formular">Je rychlost vlaku stanovena jiným způsobem?</h2>
-                    <label for="radio_tabulka_ano">Ano</label>
-                    <input type="radio" id="radio_tabulka_ano" name="radio_tabulka_ano_ne" value="True">
+                    <h2 class="nadpis_formular">
+                        Je rychlost vlaku stanovena jiným způsobem?
+                        <br>
+                        Je trať vybavena ETCS?
+                    </h2>
+                    <label for="radio_tabulka_ano">ANO</label>
+                    <input type="radio" id="radio_tabulka_ano" name="radio_tabulka_ano_ne" value="True" style="margin-right: 1rem;" checked>
                     <label for="radio_tabulka_ne">Ne</label>
-                    <input type="radio" id="radio_tabulka_ne" name="radio_tabulka_ano_ne" value="False" checked>
+                    <input type="radio" id="radio_tabulka_ne" name="radio_tabulka_ano_ne" value="False">
                 </div>
-                <div id="skryt" class="cara_nahore">
+                <div id="skryt" class="cara_nahore" style="display: none;">
                     <div id="formular_vypocet">
                         <h2 class="nadpis_formular">brzdicí procenta dle <span title="Zprávy o brzdění">ZOB</span></h2>
                         <table class="tabulka_uprostred">

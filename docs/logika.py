@@ -5,7 +5,7 @@ sw_alert = window.Swal.fire
 
 # globální konstanty
 NAZEV_APLIKACE = "Brzděnka+"
-VERZE = "verze 0.1.0 | 2023-05"
+VERZE = "verze 1.0.0 | 2026-02"
 JMENO_AUTORA = "Martin TÁBOR"
 
 AKTUALNI_ROK = Date.new().getFullYear()
@@ -300,8 +300,8 @@ def input_zmena(ev):
         div_formular_skryt.style.display = "none"
         zobraz_zpravu({
             "icon": "info",
-            "title": "Existuje jiné opatření ?",
-            "text": "Při určení maximální rychlosti tedy postupujte v souladu s ním!",
+            "title": "Existují jiná opatření ?",
+            "text": "Při určení maximální rychlosti tedy postupujte v souladu s nimi!",
             "confirmButtonColor": BARVA_NORMAL,
             "iconColor": BARVA_NORMAL_SWA_IKONA
         })
@@ -345,3 +345,13 @@ button_vypocitat.bind("click", btn_vypocitat)
 button_reset.bind("click", reset)
 for input in document.select("input"):
     input.bind("change", input_zmena)
+
+# upozornění na začátku - řídit se jinými opatřeními (předpisy)
+#div_formular_skryt.style.display = "none"
+zobraz_zpravu({
+    "icon": "info",
+    "title": "Existují jiná opatření ?",
+    "text": "Při určení maximální rychlosti tedy postupujte v souladu s nimi!",
+    "confirmButtonColor": BARVA_NORMAL,
+"iconColor": BARVA_NORMAL_SWA_IKONA
+})
